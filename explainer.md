@@ -62,11 +62,12 @@ dictionary MediaKeySystemMediaCapability {
 The encryption scheme used by the content.  A missing or `null` value indicates
 that any encryption scheme is acceptable.
 
-NOTE: Implementations **must** reject configurations specifying unsupported
-encryption schemes.
+Implementations **must** reject configurations specifying unsupported encryption
+schemes.
 
-NOTE: Applications **should** specify encryption scheme(s) they require, since
-different encryption schemes are generally incompatible with one another.
+(non-normative) **NOTE**: Applications should specify encryption scheme(s) they
+require, since different encryption schemes are generally incompatible with one
+another.
 
 
 ## Examples
@@ -104,18 +105,22 @@ function tryTwoEncryptionSchemes(keySystem) {
 
 ## Backward Compatibility
 
-Applications which don't use these new fields will not be affected.  If they
-make assumptions about the capabilities of certain platforms or key systems,
-they can continue to use those assumptions, with no additional risk.
+Applications which don't use the new field will not be affected.  If they make
+assumptions about the capabilities of certain platforms or key systems, they can
+continue to use those assumptions, with no additional risk.
 
-User agents which don't recognize these new fields will ignore them.
-Applications which are aware of the new fields may still need to hard-code
-assumptions about these older user agents.
+User agents which don't recognize the new field will ignore it.  Applications
+which are aware of the new fields may still need to hard-code assumptions about
+the encryption schemes supported by these older user agents.
 
-Applications could detect whether or not a user agent recognizes the new fields
-by checking [`MediaKeySystemAccess.getConfiguration()`][].  If the configuration
-returned by `getConfiguration()` does not contain the new fields, they were
-ignored.
+If the application does not specify an encryption scheme,
+[`MediaKeySystemAccess.getConfiguration()`][] **must** fill in a supported value
+in the `encryptionScheme` fields of `MediaKeySystemMediaCapability` objects.
+
+Applications could therefore detect whether or not a user agent recognizes the
+new field by checking [`MediaKeySystemAccess.getConfiguration()`][].  If the
+configuration returned by `getConfiguration()` does not contain
+`encryptionScheme`, the field was ignored by the user agent.
 
 With this technique, a polyfill could take over the role of hard-coding
 assumptions about what encryption schemes older user agents support.
