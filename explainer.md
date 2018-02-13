@@ -65,15 +65,37 @@ that any encryption scheme is acceptable.
 Implementations **must** reject configurations specifying unsupported encryption
 schemes.
 
-(non-normative) **NOTE**: Applications should specify encryption scheme(s) they
-require, since different encryption schemes are generally incompatible with one
-another.
+
+## Application notes
+
+Applications should specify encryption scheme(s) they require, since different
+encryption schemes are generally incompatible with one another.  Asking for
+"any" encryption scheme is unrealistic.  Defining `null` as "any scheme" is
+convenient for backward compatibility, though.  Applications which ignore this
+feature by leaving `encryptionScheme` null get the same user agent behavior they
+did before this feature existed: they have to assume what encryption schemes the
+user agent supports.
+
+Applications may specify multiple encryption schemes in separate configurations
+or in multiple capabilities of the same configuration.
+
+The user agent only selects one configuration.  So if different encryption
+schemes are specified in separate configurations, the application will be given
+back a configuration containing only one encryption scheme.
+
+If different encryption schemes appear in the same configuration, the user
+agent's accumulated configuration will contain the supported subset of the
+capabilities specified by the application.  The configuration returned from
+`getConfiguration()` may therefore contain more than one encryption scheme.
 
 
 ## Examples
 
 ```js
-function tryTwoEncryptionSchemes(keySystem) {
+function tryTwoEncryptionSchemesInSeparateConfigurations(keySystem) {
+  // Query two configurations with different encryption schemes.
+  // Only one will be chosen by the user agent.
+
   return navigator.requestMediaKeySystemAccess(keySystem, [
     { // A configuration which uses the "cenc" encryption scheme
       videoCapabilities: [{
@@ -99,6 +121,36 @@ function tryTwoEncryptionSchemes(keySystem) {
       initDataTypes: ['keyids'],
     },
   ]);
+}
+
+function tryTwoEncryptionSchemesInOneConfiguration(keySystem) {
+  // Query one configuration with two different encryption schemes.
+  // The user agent will eliminate any capabilities object it cannot support,
+  // so the accumulated configuration may contain one encryption scheme or both.
+
+  return navigator.requestMediaKeySystemAccess(keySystem, [{
+    videoCapabilities: [
+      { // A capability object which uses the "cenc" encryption scheme
+        contentType: 'video/mp4; codecs="avc1.640028"',
+        encryptionScheme: 'cenc',
+      },
+      { // A capability object which uses the "cbcs" encryption scheme
+        contentType: 'video/mp4; codecs="avc1.640028"',
+        encryptionScheme: 'cbcs',
+      },
+    ],
+    audioCapabilities: [
+      { // A capability object which uses the "cenc" encryption scheme
+        contentType: 'audio/mp4; codecs="mp4a.40.2"',
+        encryptionScheme: 'cenc',
+      },
+      { // A capability object which uses the "cbcs" encryption scheme
+        contentType: 'audio/mp4; codecs="mp4a.40.2"',
+        encryptionScheme: 'cbcs',
+      },
+    ],
+    initDataTypes: ['keyids'],
+  }]);
 }
 ```
 
