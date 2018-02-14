@@ -8,8 +8,6 @@ only support CBCS mode.  Still others are able to support both.
 These two encryption schemes are incompatible, so applications must be able to
 make intelligent choices about what content to serve to which user agents.
 
-https://github.com/w3c/encrypted-media/issues/400
-
 
 ## Overview
 
@@ -22,12 +20,9 @@ video capabilities which are required.
 We should extend [`MediaKeySystemMediaCapability`][] to allow the application to
 specify which encryption schemes it could use.
 
-This is based on the informal proposal I made in [EME issue 400][].
-
 [`navigator.requestMediaKeySystemAccess()`]: https://www.w3.org/TR/encrypted-media/#navigator-extension:-requestmediakeysystemaccess()
 [`MediaKeySystemConfiguration`]: https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemconfiguration
 [`MediaKeySystemMediaCapability`]: https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemmediacapability
-[EME issue 400]: https://github.com/w3c/encrypted-media/issues/400#issuecomment-332674527
 
 
 ## Web IDL
