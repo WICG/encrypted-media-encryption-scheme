@@ -173,3 +173,17 @@ With this technique, a polyfill could take over the role of hard-coding
 assumptions about what encryption schemes older user agents support.
 
 [`MediaKeySystemAccess.getConfiguration()`]: https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemaccess-getconfiguration
+
+
+## Open issues
+
+1. Should "cens" and "cbc1" be included?  We are not aware of any user agents
+   which currently support them.  Perhaps they should be removed.
+1. Should the default value for `encryptionScheme` be "cenc" rather than `null`?
+   This might cause issues for Safari, which as far as I know, does not support
+   "cenc".  If this is true, applications which omit `encryptionScheme` would be
+   implicitly asking for "cenc", which would then fail once Safari implements
+   the new field.  So unless "cenc" support is mandatory, the default should be
+   `null`.
+1. Should "cenc" support be mandatory, as it is in the Common Encryption spec?
+1. How do we best define what these schemes mean for WebM content?
