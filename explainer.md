@@ -37,7 +37,12 @@ The EncryptionScheme enumeration is defined as follows:
  - *cbcs*: The 'cbcs' mode, defined in [ISO 23001-7:2016][], section 4.2d.
            AES-CBC mode partial video NAL pattern encryption.
 
+NOTE: The document [WebM Encryption][] defines WebM encryption to be equivalent
+to and compatible with the 'cenc' encryption mode defined in
+[ISO 23001-7:2016][].
+
 [ISO 23001-7:2016]: https://www.iso.org/standard/68042.html
+[WebM Encryption]: https://www.webmproject.org/docs/webm-encryption/
 
 
 ```js
@@ -169,8 +174,3 @@ With this technique, a polyfill could take over the role of hard-coding
 assumptions about what encryption schemes older user agents support.
 
 [`MediaKeySystemAccess.getConfiguration()`]: https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemaccess-getconfiguration
-
-
-## Open issues
-
-1. How do we best define what these schemes mean for WebM content?
