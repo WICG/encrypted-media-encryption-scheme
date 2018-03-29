@@ -58,8 +58,21 @@ dictionary MediaKeySystemMediaCapability {
 The encryption scheme used by the content.  A missing or `null` value indicates
 that any encryption scheme is acceptable.
 
-Implementations **must** reject configurations specifying unsupported encryption
+In the [Get Supported Capabilities for Audio/Video Type][] algorithm,
+implementations **must** skip capabilities specifying unsupported encryption
 schemes.
+
+[`MediaKeySystemAccess.getConfiguration()`][] **must** fill in a supported value
+in the `encryptionScheme` fields of `MediaKeySystemMediaCapability` objects, to
+enable polyfills to determine whether or not this new feature is implemented by
+the user agent.
+
+[Clear Key][] implementations **must** support the "cenc" scheme at a minimum,
+to ensure interoperability for users of this common key system.
+
+[Get Supported Capabilities for Audio/Video Type]: https://www.w3.org/TR/encrypted-media/#get-supported-capabilities-for-audio-video-type
+[`MediaKeySystemAccess.getConfiguration()`]: https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemaccess-getconfiguration
+[Clear Key]: https://www.w3.org/TR/encrypted-media/#clear-key
 
 
 ## Application notes
@@ -161,16 +174,52 @@ User agents which don't recognize the new field will ignore it.  Applications
 which are aware of the new fields may still need to hard-code assumptions about
 the encryption schemes supported by these older user agents.
 
-If the application does not specify an encryption scheme,
+Even if the application does not specify an encryption scheme,
 [`MediaKeySystemAccess.getConfiguration()`][] **must** fill in a supported value
 in the `encryptionScheme` fields of `MediaKeySystemMediaCapability` objects.
 
-Applications could therefore detect whether or not a user agent recognizes the
-new field by checking [`MediaKeySystemAccess.getConfiguration()`][].  If the
+This would allow applications to detect whether or not a user agent recognizes
+the new field by checking [`MediaKeySystemAccess.getConfiguration()`][].  If the
 configuration returned by `getConfiguration()` does not contain
 `encryptionScheme`, the field was ignored by the user agent.
 
 With this technique, a polyfill could take over the role of hard-coding
 assumptions about what encryption schemes older user agents support.
 
+Any user agent which deprecates support for an existing encryption scheme could
+introduce backward compatibility issues for older applications which do not use
+this new feature.  Appropriate communication with developers will be necessary
+to ensure that applications are updated in a timely manner ahead of any such
+deprecation.  The need for good communication around deprecations is not unique
+to this proposal, but we felt it was worth exploring this potential
+compatibility issue explicitly.
+
 [`MediaKeySystemAccess.getConfiguration()`]: https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemaccess-getconfiguration
+
+
+## Alternatives Considered
+
+### Content Type parameters
+
+We considered using contentType parameters to specify encryption scheme, but
+this presented more compatibility issues for developers.  For example, the
+existing spec states in the [Get Supported Capabilities for Audio/Video Type][]
+algorithm:
+
+> Let parameters be the RFC 6381 [RFC6381] parameters, if any, specified by
+> content type. If the user agent does not recognize one or more parameters,
+> continue to the next iteration.
+
+This means applications using older browsers would be required to omit the
+(hypothetical) encryption scheme parameter to avoid having that capability
+skipped.
+
+This solution would also offer no way for polyfills to detect user agent support
+for the new feature.  Applications and polyfills alike would need to hard-code a
+list of user agents known to support the new feature, as well as a list of the
+encryption schemes supported by user agents which don't support the feature.
+
+This seems like too much burden for application developers, and a more difficult
+transition path.
+
+[Get Supported Capabilities for Audio/Video Type]: https://www.w3.org/TR/encrypted-media/#get-supported-capabilities-for-audio-video-type
