@@ -62,10 +62,8 @@ In the [Get Supported Capabilities for Audio/Video Type][] algorithm,
 implementations **must** skip capabilities specifying unsupported encryption
 schemes.
 
-[`MediaKeySystemAccess.getConfiguration()`][] **must** fill in a supported value
-in the `encryptionScheme` fields of `MediaKeySystemMediaCapability` objects, to
-enable polyfills to determine whether or not this new feature is implemented by
-the user agent.
+If `encryptionScheme` from the application is `null` or missing, the
+`encryptionScheme` fields in the returned configuration **must** be `null`.
 
 [Clear Key][] implementations **must** support the "cenc" scheme at a minimum,
 to ensure interoperability for users of this common key system.
@@ -174,14 +172,10 @@ User agents which don't recognize the new field will ignore it.  Applications
 which are aware of the new fields may still need to hard-code assumptions about
 the encryption schemes supported by these older user agents.
 
-Even if the application does not specify an encryption scheme,
-[`MediaKeySystemAccess.getConfiguration()`][] **must** fill in a supported value
-in the `encryptionScheme` fields of `MediaKeySystemMediaCapability` objects.
-
-This would allow applications to detect whether or not a user agent recognizes
-the new field by checking [`MediaKeySystemAccess.getConfiguration()`][].  If the
-configuration returned by `getConfiguration()` does not contain
-`encryptionScheme`, the field was ignored by the user agent.
+Application could detect whether or not a user agent recognizes the new field by
+checking [`MediaKeySystemAccess.getConfiguration()`][].  If the configuration
+returned by `getConfiguration()` does not contain `encryptionScheme`, the field
+was ignored by the user agent.
 
 With this technique, a polyfill could take over the role of hard-coding
 assumptions about what encryption schemes older user agents support.
