@@ -28,10 +28,10 @@ specify which encryption schemes it could use.
 ## Web IDL
 
 ```js
-enum EncryptionScheme { "cenc", "cbcs" };
+enum MediaKeyEncryptionScheme { "cenc", "cbcs" };
 ```
 
-The EncryptionScheme enumeration is defined as follows:
+The MediaKeyEncryptionScheme enumeration is defined as follows:
  - *cenc*: The 'cenc' mode, defined in [ISO 23001-7:2016][], section 4.2a.
            AES-CTR mode full sample and video NAL subsample encryption.
  - *cbcs*: The 'cbcs' mode, defined in [ISO 23001-7:2016][], section 4.2d.
@@ -49,11 +49,11 @@ to and compatible with the 'cenc' encryption mode defined in
 dictionary MediaKeySystemMediaCapability {
     DOMString contentType = "";
     DOMString robustness = "";
-    EncryptionScheme? encryptionScheme = null;
+    MediaKeyEncryptionScheme? encryptionScheme = null;
 };
 ```
 
-`encryptionScheme` of type `EncryptionScheme`, defaulting to `null`
+`encryptionScheme` of type `MediaKeyEncryptionScheme`, defaulting to `null`
 
 The encryption scheme used by the content.  A missing or `null` value indicates
 that any encryption scheme is acceptable.
