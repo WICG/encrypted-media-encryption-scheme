@@ -28,10 +28,19 @@ specify which encryption schemes it could use.
 ## Web IDL
 
 ```js
-enum MediaKeyEncryptionScheme { "cenc", "cbcs" };
+dictionary MediaKeySystemMediaCapability {
+    DOMString contentType = "";
+    DOMString robustness = "";
+    DOMString? encryptionScheme = null;
+};
 ```
 
-The MediaKeyEncryptionScheme enumeration is defined as follows:
+`encryptionScheme` of type `DOMString`, defaulting to `null`
+
+The encryption scheme used by the content.  A missing or `null` value indicates
+that any encryption scheme is acceptable.
+
+Expected non-`null` values for encryptionScheme are:
  - *cenc*: The 'cenc' mode, defined in [ISO 23001-7:2016][], section 4.2a.
            AES-CTR mode full sample and video NAL subsample encryption.
  - *cbcs*: The 'cbcs' mode, defined in [ISO 23001-7:2016][], section 4.2d.
@@ -44,23 +53,9 @@ to and compatible with the 'cenc' encryption mode defined in
 [ISO 23001-7:2016]: https://www.iso.org/standard/68042.html
 [WebM Encryption]: https://www.webmproject.org/docs/webm-encryption/
 
-
-```js
-dictionary MediaKeySystemMediaCapability {
-    DOMString contentType = "";
-    DOMString robustness = "";
-    MediaKeyEncryptionScheme? encryptionScheme = null;
-};
-```
-
-`encryptionScheme` of type `MediaKeyEncryptionScheme`, defaulting to `null`
-
-The encryption scheme used by the content.  A missing or `null` value indicates
-that any encryption scheme is acceptable.
-
 In the [Get Supported Capabilities for Audio/Video Type][] algorithm,
-implementations **must** skip capabilities specifying unsupported encryption
-schemes.
+implementations **must** skip capabilities specifying unsupported or
+unrecognized encryption schemes.
 
 If `encryptionScheme` from the application is `null` or missing, the
 `encryptionScheme` fields in the returned configuration **must** be `null`.
