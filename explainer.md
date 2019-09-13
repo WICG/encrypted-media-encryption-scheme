@@ -45,6 +45,9 @@ Expected non-`null` values for encryptionScheme are:
            AES-CTR mode full sample and video NAL subsample encryption.
  - *cbcs*: The 'cbcs' mode, defined in [ISO 23001-7:2016][], section 4.2d.
            AES-CBC mode partial video NAL pattern encryption.
+           *(Although the ISO definition allows for any pattern, on the web
+           this scheme implies a 10% pattern for video and a 100% pattern
+           for audio.)*
 
 NOTE: The document [WebM Encryption][] defines WebM encryption to be equivalent
 to and compatible with the 'cenc' encryption mode defined in
