@@ -1,2 +1,2 @@
 # encrypted-media-encryption-scheme
-Proposal to add encryption scheme support to Encrypted Media Extensions.
+Incubation for encryption scheme query feature in EME
