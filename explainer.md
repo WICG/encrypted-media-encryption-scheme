@@ -28,9 +28,7 @@ specify which encryption schemes it could use.
 ## Web IDL
 
 ```js
-dictionary MediaKeySystemMediaCapability {
-    DOMString contentType = "";
-    DOMString robustness = "";
+partial dictionary MediaKeySystemMediaCapability {
     DOMString? encryptionScheme = null;
 };
 ```
