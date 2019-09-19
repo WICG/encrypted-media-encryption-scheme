@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version eff3128ffb04502efdde84883f15c8da06b5b62a" name="generator">
+  <meta content="Bikeshed version 006238b6a4ecb490226e966221972e24832edfd7" name="generator">
   <link href="https://wicg.github.io/encrypted-media-encryption-scheme/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Encrypted Media: Encryption Scheme Query</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-09-17">17 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-09-18">18 September 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1486,10 +1486,10 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>This specification intends to provide an extension to the W3C
+   <p>This is an extension to the W3C Encrypted Media Extensions
 
-Encrypted Media Extensions specification. The API will allow authors
-to query support for specific encryption schemes in the CDM.</p>
+specification, to be integrated into EME vNext. The API will allow
+authors to query support for specific encryption schemes in the CDM.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
@@ -1574,6 +1574,7 @@ to query support for specific encryption schemes in the CDM.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="2" id="algorithm-extension"><span class="secno">2. </span><span class="content"> Algorithm Extensions </span><a class="self-link" href="#algorithm-extension"></a></h2>
+    <p class="issue" id="issue-9cf98f9a"><a class="self-link" href="#issue-9cf98f9a"></a> Incorporate these steps into the algorithm of the main spec?</p>
     <p> In the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#get-supported-capabilities-for-audio-video-type" id="ref-for-get-supported-capabilities-for-audio-video-type">Get Supported Capabilities...</a></code> algorithm, the following changes
     should be made: </p>
     <ol>
@@ -1617,9 +1618,8 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
     of null and the interpretation of null as "any" provide backward
     compatibility for unaware applications and a path to a polyfill for older
     user agents.  See also <a href="#polyfills">§ 5 Polyfills and Backward Compatibility</a>. </p>
-    <p class="issue" id="issue-29ba321f"><a class="self-link" href="#issue-29ba321f"></a> Add links to capabilities and configuration dictionary types</p>
-    <p> Applications may specify multiple encryption schemes in separate configurations
-    or in multiple capabilities of the same configuration. </p>
+    <p> Applications may specify multiple encryption schemes in separate <a href="https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemconfiguration">configurations</a>, or in
+    multiple <a href="https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemmediacapability">capabilities</a> of the same configuration. </p>
     <p> The user agent only selects one configuration.  So if different encryption
     schemes are specified in separate configurations, the application will be
     given back a configuration containing only one encryption scheme. </p>
@@ -2038,7 +2038,7 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
    <div class="issue"> A registry should be created for encryption schemes, and the
     existing format registry should be updated with respect to encryption
     schemes. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9></a><a href="#issue-7472f44c"> ↵ </a></div>
-   <div class="issue"> Add links to capabilities and configuration dictionary types<a href="#issue-29ba321f"> ↵ </a></div>
+   <div class="issue"> Incorporate these steps into the algorithm of the main spec?<a href="#issue-9cf98f9a"> ↵ </a></div>
    <div class="issue"> Develop and link to a polyfill for this feature<a href="#issue-71365f01"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="dom-mediakeysystemmediacapability-encryptionscheme">
