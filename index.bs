@@ -9,9 +9,9 @@ Level: 1
 Group: wicg
 Editor: Joey Parrish, w3cid 105371, Google Inc. https://google.com/
 
-Abstract: This specification intends to provide an extension to the W3C
-Abstract: Encrypted Media Extensions specification. The API will allow authors
-Abstract: to query support for specific encryption schemes in the CDM.
+Abstract: This is an extension to the W3C Encrypted Media Extensions
+Abstract: specification, to be integrated into EME vNext. The API will allow
+Abstract: authors to query support for specific encryption schemes in the CDM.
 
 !Participate: <a href="https://github.com/wicg/encrypted-media-encryption-scheme">Git Repository.</a>
 !Participate: <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/new">File an issue.</a>
@@ -97,6 +97,8 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
   <h2 id="algorithm-extension">
     Algorithm Extensions
   </h2>
+
+  ISSUE: Incorporate these steps into the algorithm of the main spec?
 
   <p>
     In the {{Get Supported Capabilities...}} algorithm, the following changes
