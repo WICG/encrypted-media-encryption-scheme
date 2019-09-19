@@ -154,11 +154,11 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
     user agents.  See also [[#polyfills]].
   </p>
 
-  ISSUE: Add links to capabilities and configuration dictionary types
-
   <p>
-    Applications may specify multiple encryption schemes in separate configurations
-    or in multiple capabilities of the same configuration.
+    Applications may specify multiple encryption schemes in separate
+    [[encrypted-media#dom-mediakeysystemconfiguration|configurations]], or in
+    multiple [[encrypted-media#dom-mediakeysystemmediacapability|capabilities]]
+    of the same configuration.
   </p>
 
   <p>
