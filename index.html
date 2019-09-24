@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 006238b6a4ecb490226e966221972e24832edfd7" name="generator">
+  <meta content="Bikeshed version e86d5b1b47a216fa66165c234892adc259212183" name="generator">
   <link href="https://wicg.github.io/encrypted-media-encryption-scheme/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Encrypted Media: Encryption Scheme Query</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-09-18">18 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-09-24">24 September 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1574,7 +1574,6 @@ authors to query support for specific encryption schemes in the CDM.</p>
    </section>
    <section>
     <h2 class="heading settled" data-level="2" id="algorithm-extension"><span class="secno">2. </span><span class="content"> Algorithm Extensions </span><a class="self-link" href="#algorithm-extension"></a></h2>
-    <p class="issue" id="issue-9cf98f9a"><a class="self-link" href="#issue-9cf98f9a"></a> Incorporate these steps into the algorithm of the main spec?</p>
     <p> In the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#get-supported-capabilities-for-audio-video-type" id="ref-for-get-supported-capabilities-for-audio-video-type">Get Supported Capabilities...</a></code> algorithm, the following changes
     should be made: </p>
     <ol>
@@ -1648,7 +1647,7 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
     unsupported schemes.  Note that these are the same assumptions already made
     by existing applications.  A polyfill would allow an application to offload
     those assumptions.  The application could then always use the <code class="idl"><a data-link-type="idl" href="#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme①①">encryptionScheme</a></code> field to specify their needs using a standard API. </p>
-    <p class="issue" id="issue-71365f01"><a class="self-link" href="#issue-71365f01"></a> Develop and link to a polyfill for this feature</p>
+    <p class="issue" id="issue-74d893e8"><a class="self-link" href="#issue-74d893e8"></a> Publish and link to a polyfill for this feature. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#13">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#13></a></p>
     <p> Any user agent which deprecates support for an existing encryption scheme
     could introduce backward compatibility issues for older applications which
     do not use this new feature.  Appropriate communication with developers will
@@ -2038,8 +2037,7 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
    <div class="issue"> A registry should be created for encryption schemes, and the
     existing format registry should be updated with respect to encryption
     schemes. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9></a><a href="#issue-7472f44c"> ↵ </a></div>
-   <div class="issue"> Incorporate these steps into the algorithm of the main spec?<a href="#issue-9cf98f9a"> ↵ </a></div>
-   <div class="issue"> Develop and link to a polyfill for this feature<a href="#issue-71365f01"> ↵ </a></div>
+   <div class="issue"> Publish and link to a polyfill for this feature. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#13">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#13></a><a href="#issue-74d893e8"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="dom-mediakeysystemmediacapability-encryptionscheme">
    <b><a href="#dom-mediakeysystemmediacapability-encryptionscheme">#dom-mediakeysystemmediacapability-encryptionscheme</a></b><b>Referenced in:</b>
