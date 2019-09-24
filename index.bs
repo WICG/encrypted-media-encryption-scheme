@@ -98,8 +98,6 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
     Algorithm Extensions
   </h2>
 
-  ISSUE: Incorporate these steps into the algorithm of the main spec?
-
   <p>
     In the {{Get Supported Capabilities...}} algorithm, the following changes
     should be made:
@@ -217,7 +215,7 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
     {{encryptionScheme}} field to specify their needs using a standard API.
   </p>
 
-  ISSUE: Develop and link to a polyfill for this feature
+  ISSUE(#13): Publish and link to a polyfill for this feature.
 
   <p>
     Any user agent which deprecates support for an existing encryption scheme
