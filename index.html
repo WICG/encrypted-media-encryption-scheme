@@ -1213,7 +1213,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version e86d5b1b47a216fa66165c234892adc259212183" name="generator">
+  <meta content="Bikeshed version 0dd2bba6dfda6c3168490a3a3044dd1d0b1ef8e0" name="generator">
   <link href="https://wicg.github.io/encrypted-media-encryption-scheme/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Encrypted Media: Encryption Scheme Query</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-09-24">24 September 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-11-12">12 November 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1558,15 +1558,17 @@ authors to query support for specific encryption schemes in the CDM.</p>
                4.2dfn.  AES-CTR mode full sample and video NAL
                subsample encryption.</p>
      <li data-md>
-      <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="cbcs">cbcs</dfn>: The "cbcs" mode, defined in ISO 23001-7:2016, section
+      <p><dfn data-dfn-type="dfn" data-noexport id="cbcs">cbcs<a class="self-link" href="#cbcs"></a></dfn>: The "cbcs" mode, defined in ISO 23001-7:2016, section
                4.2d.  AES-CBC mode partial video NAL pattern
                encryption.</p>
+     <li data-md>
+      <p><dfn data-dfn-type="dfn" data-noexport id="cbcs-restricted">cbcs-restricted<a class="self-link" href="#cbcs-restricted"></a></dfn>: The same as "cbcs" mode, but with a
+                          specific pattern of 10% for video and
+                          100% for audio.</p>
     </ul>
     <p class="note" role="note"><span>NOTE:</span> The document WebM Encryption defines WebM encryption to be equivalent
           to and compatible with the "cenc" encryption mode defined in ISO
           23001-7:2016.</p>
-    <p class="issue" id="issue-bb1376b8"><a class="self-link" href="#issue-bb1376b8"></a> More work is needed on the definition of <a data-link-type="dfn" href="#cbcs" id="ref-for-cbcs">cbcs</a> to ensure
-    interoperability. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#7">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#7></a></p>
     <p class="issue" id="issue-7472f44c"><a class="self-link" href="#issue-7472f44c"></a> A registry should be created for encryption schemes, and the
     existing format registry should be updated with respect to encryption
     schemes. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9></a></p>
@@ -1681,8 +1683,8 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
    </section>
    <section>
     <h2 class="heading settled" data-level="7" id="examples"><span class="secno">7. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
-    <div class="example" id="example-1e953c3a">
-     <a class="self-link" href="#example-1e953c3a"></a> 
+    <div class="example" id="example-72868ad3">
+     <a class="self-link" href="#example-72868ad3"></a> 
 <pre class="highlight"><c- a>function</c-> tryTwoEncryptionSchemesInSeparateConfigurations<c- p>(</c->keySystem<c- p>)</c-> <c- p>{</c->
   <c- c1>// Query two configurations with different encryption schemes.</c->
   <c- c1>// Only one will be chosen by the user agent.</c->
@@ -1700,14 +1702,14 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
       initDataTypes<c- o>:</c-> <c- p>[</c-><c- t>'keyids'</c-><c- p>],</c->
     <c- p>},</c->
 
-    <c- p>{</c-> <c- c1>// A configuration which uses the "cbcs" encryption scheme</c->
+    <c- p>{</c-> <c- c1>// A configuration which uses the "cbcs-restricted" encryption scheme</c->
       videoCapabilities<c- o>:</c-> <c- p>[{</c->
         contentType<c- o>:</c-> <c- t>'video/mp4; codecs="avc1.640028"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
       <c- p>}],</c->
       audioCapabilities<c- o>:</c-> <c- p>[{</c->
         contentType<c- o>:</c-> <c- t>'audio/mp4; codecs="mp4a.40.2"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
       <c- p>}],</c->
       initDataTypes<c- o>:</c-> <c- p>[</c-><c- t>'keyids'</c-><c- p>],</c->
     <c- p>},</c->
@@ -1715,8 +1717,8 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
 <c- p>}</c->
 </pre>
     </div>
-    <div class="example" id="example-4417a89c">
-     <a class="self-link" href="#example-4417a89c"></a> 
+    <div class="example" id="example-6d4946a3">
+     <a class="self-link" href="#example-6d4946a3"></a> 
 <pre class="highlight"><c- a>function</c-> tryTwoEncryptionSchemesInOneConfiguration<c- p>(</c->keySystem<c- p>)</c-> <c- p>{</c->
   <c- c1>// Query one configuration with two different encryption schemes.</c->
   <c- c1>// The user agent will eliminate any capabilities object it cannot support,</c->
@@ -1728,9 +1730,9 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
         contentType<c- o>:</c-> <c- t>'video/mp4; codecs="avc1.640028"'</c-><c- p>,</c->
         encryptionScheme<c- o>:</c-> <c- t>'cenc'</c-><c- p>,</c->
       <c- p>},</c->
-      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs" encryption scheme</c->
+      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs-restricted" encryption scheme</c->
         contentType<c- o>:</c-> <c- t>'video/mp4; codecs="avc1.640028"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
       <c- p>},</c->
     <c- p>],</c->
     audioCapabilities<c- o>:</c-> <c- p>[</c->
@@ -1738,9 +1740,9 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
         contentType<c- o>:</c-> <c- t>'audio/mp4; codecs="mp4a.40.2"'</c-><c- p>,</c->
         encryptionScheme<c- o>:</c-> <c- t>'cenc'</c-><c- p>,</c->
       <c- p>},</c->
-      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs" encryption scheme</c->
+      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs-restricted" encryption scheme</c->
         contentType<c- o>:</c-> <c- t>'audio/mp4; codecs="mp4a.40.2"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
       <c- p>},</c->
     <c- p>],</c->
     initDataTypes<c- o>:</c-> <c- p>[</c-><c- t>'keyids'</c-><c- p>],</c->
@@ -1900,6 +1902,7 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#cbcs">cbcs</a><span>, in §1</span>
+   <li><a href="#cbcs-restricted">cbcs-restricted</a><span>, in §1</span>
    <li><a href="#cenc">cenc</a><span>, in §1</span>
    <li><a href="#dom-mediakeysystemmediacapability-encryptionscheme">encryptionScheme</a><span>, in §1</span>
   </ul>
@@ -2032,8 +2035,6 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
 </pre>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
-   <div class="issue"> More work is needed on the definition of <a data-link-type="dfn" href="#cbcs">cbcs</a> to ensure
-    interoperability. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#7">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#7></a><a href="#issue-bb1376b8"> ↵ </a></div>
    <div class="issue"> A registry should be created for encryption schemes, and the
     existing format registry should be updated with respect to encryption
     schemes. <a href="https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9">&lt;https://github.com/wicg/encrypted-media-encryption-scheme/issues/#9></a><a href="#issue-7472f44c"> ↵ </a></div>
@@ -2057,13 +2058,6 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
    <ul>
     <li><a href="#ref-for-cenc">3. 
     Clear Key Requirements </a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="cbcs">
-   <b><a href="#cbcs">#cbcs</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-cbcs">1. 
-    MediaKeySystemMediaCapability dictionary extension </a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
