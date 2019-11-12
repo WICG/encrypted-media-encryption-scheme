@@ -74,7 +74,7 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
 
     Well-known values for {{encryptionScheme}} are:
         - <dfn>cenc</dfn>: The "cenc" mode, defined in ISO 23001-7:2016, section
-                           4.2dfn.  AES-CTR mode full sample and video NAL
+                           4.2a.  AES-CTR mode full sample and video NAL
                            subsample encryption.
         - <dfn>cbcs</dfn>: The "cbcs" mode, defined in ISO 23001-7:2016, section
                            4.2d.  AES-CBC mode partial video NAL pattern
