@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Encrypted Media: Encryption Scheme Query</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-11-12">12 November 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-11-13">13 November 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1560,11 +1560,15 @@ authors to query support for specific encryption schemes in the CDM.</p>
      <li data-md>
       <p><dfn data-dfn-type="dfn" data-noexport id="cbcs">cbcs<a class="self-link" href="#cbcs"></a></dfn>: The "cbcs" mode, defined in ISO 23001-7:2016, section
                4.2d.  AES-CBC mode partial video NAL pattern
-               encryption.</p>
+               encryption.  Any encryption pattern is allowed for
+               video, while audio must be protected using
+               whole-block full-sample encryption for
+               interoperability.</p>
      <li data-md>
-      <p><dfn data-dfn-type="dfn" data-noexport id="cbcs-restricted">cbcs-restricted<a class="self-link" href="#cbcs-restricted"></a></dfn>: The same as "cbcs" mode, but with a
-                          specific pattern of 10% for video and
-                          100% for audio.</p>
+      <p><dfn data-dfn-type="dfn" data-noexport id="cbcs-recommended">cbcs-recommended<a class="self-link" href="#cbcs-recommended"></a></dfn>: The same as "cbcs" mode, but with a
+                           specific encrypt:skip pattern of 1:9 for
+                           video, as recommended in ISO
+                           23001-7:2016, section 10.4.2.</p>
     </ul>
     <p class="note" role="note"><span>NOTE:</span> The document WebM Encryption defines WebM encryption to be equivalent
           to and compatible with the "cenc" encryption mode defined in ISO
@@ -1683,8 +1687,8 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
    </section>
    <section>
     <h2 class="heading settled" data-level="7" id="examples"><span class="secno">7. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
-    <div class="example" id="example-72868ad3">
-     <a class="self-link" href="#example-72868ad3"></a> 
+    <div class="example" id="example-cff0588b">
+     <a class="self-link" href="#example-cff0588b"></a> 
 <pre class="highlight"><c- a>function</c-> tryTwoEncryptionSchemesInSeparateConfigurations<c- p>(</c->keySystem<c- p>)</c-> <c- p>{</c->
   <c- c1>// Query two configurations with different encryption schemes.</c->
   <c- c1>// Only one will be chosen by the user agent.</c->
@@ -1702,14 +1706,14 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
       initDataTypes<c- o>:</c-> <c- p>[</c-><c- t>'keyids'</c-><c- p>],</c->
     <c- p>},</c->
 
-    <c- p>{</c-> <c- c1>// A configuration which uses the "cbcs-restricted" encryption scheme</c->
+    <c- p>{</c-> <c- c1>// A configuration which uses the "cbcs-recommended" encryption scheme</c->
       videoCapabilities<c- o>:</c-> <c- p>[{</c->
         contentType<c- o>:</c-> <c- t>'video/mp4; codecs="avc1.640028"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-recommended'</c-><c- p>,</c->
       <c- p>}],</c->
       audioCapabilities<c- o>:</c-> <c- p>[{</c->
         contentType<c- o>:</c-> <c- t>'audio/mp4; codecs="mp4a.40.2"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-recommended'</c-><c- p>,</c->
       <c- p>}],</c->
       initDataTypes<c- o>:</c-> <c- p>[</c-><c- t>'keyids'</c-><c- p>],</c->
     <c- p>},</c->
@@ -1717,8 +1721,8 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
 <c- p>}</c->
 </pre>
     </div>
-    <div class="example" id="example-6d4946a3">
-     <a class="self-link" href="#example-6d4946a3"></a> 
+    <div class="example" id="example-87d02b7f">
+     <a class="self-link" href="#example-87d02b7f"></a> 
 <pre class="highlight"><c- a>function</c-> tryTwoEncryptionSchemesInOneConfiguration<c- p>(</c->keySystem<c- p>)</c-> <c- p>{</c->
   <c- c1>// Query one configuration with two different encryption schemes.</c->
   <c- c1>// The user agent will eliminate any capabilities object it cannot support,</c->
@@ -1730,9 +1734,10 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
         contentType<c- o>:</c-> <c- t>'video/mp4; codecs="avc1.640028"'</c-><c- p>,</c->
         encryptionScheme<c- o>:</c-> <c- t>'cenc'</c-><c- p>,</c->
       <c- p>},</c->
-      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs-restricted" encryption scheme</c->
+      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs-recommended" encryption</c->
+        <c- c1>// scheme</c->
         contentType<c- o>:</c-> <c- t>'video/mp4; codecs="avc1.640028"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-recommended'</c-><c- p>,</c->
       <c- p>},</c->
     <c- p>],</c->
     audioCapabilities<c- o>:</c-> <c- p>[</c->
@@ -1740,9 +1745,10 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
         contentType<c- o>:</c-> <c- t>'audio/mp4; codecs="mp4a.40.2"'</c-><c- p>,</c->
         encryptionScheme<c- o>:</c-> <c- t>'cenc'</c-><c- p>,</c->
       <c- p>},</c->
-      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs-restricted" encryption scheme</c->
+      <c- p>{</c-> <c- c1>// A capability object which uses the "cbcs-recommended" encryption</c->
+        <c- c1>// scheme</c->
         contentType<c- o>:</c-> <c- t>'audio/mp4; codecs="mp4a.40.2"'</c-><c- p>,</c->
-        encryptionScheme<c- o>:</c-> <c- t>'cbcs-restricted'</c-><c- p>,</c->
+        encryptionScheme<c- o>:</c-> <c- t>'cbcs-recommended'</c-><c- p>,</c->
       <c- p>},</c->
     <c- p>],</c->
     initDataTypes<c- o>:</c-> <c- p>[</c-><c- t>'keyids'</c-><c- p>],</c->
@@ -1902,7 +1908,7 @@ accumulated configuration</var> in combination with <var>restrictions</var>...</
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#cbcs">cbcs</a><span>, in §1</span>
-   <li><a href="#cbcs-restricted">cbcs-restricted</a><span>, in §1</span>
+   <li><a href="#cbcs-recommended">cbcs-recommended</a><span>, in §1</span>
    <li><a href="#cenc">cenc</a><span>, in §1</span>
    <li><a href="#dom-mediakeysystemmediacapability-encryptionscheme">encryptionScheme</a><span>, in §1</span>
   </ul>
