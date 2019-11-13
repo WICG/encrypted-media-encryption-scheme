@@ -42,9 +42,12 @@ Expected non-`null` values for encryptionScheme are:
  - *cenc*: The 'cenc' mode, defined in [ISO 23001-7:2016][], section 4.2a.
            AES-CTR mode full sample and video NAL subsample encryption.
  - *cbcs*: The 'cbcs' mode, defined in [ISO 23001-7:2016][], section 4.2d.
-           AES-CBC mode partial video NAL pattern encryption.
- - *cbcs-restricted*: The same as 'cbcs' mode, but with a specific pattern of
-                      10% for video and 100% for audio.
+           AES-CBC mode partial video NAL pattern encryption.  Any encryption
+           pattern is allowed for video, while audio must be protected using
+           whole-block full-sample encryption for interoperability.
+ - *cbcs-recommended*: The same as 'cbcs' mode, but with a specific encrypt:skip
+                       pattern of 1:9 for video, as recommended in ISO
+                       23001-7:2016, section 10.4.2.
 
 NOTE: The document [WebM Encryption][] defines WebM encryption to be equivalent
 to and compatible with the 'cenc' encryption mode defined in
@@ -111,14 +114,14 @@ function tryTwoEncryptionSchemesInSeparateConfigurations(keySystem) {
       initDataTypes: ['keyids'],
     },
 
-    { // A configuration which uses the "cbcs-restricted" encryption scheme
+    { // A configuration which uses the "cbcs-recommended" encryption scheme
       videoCapabilities: [{
         contentType: 'video/mp4; codecs="avc1.640028"',
-        encryptionScheme: 'cbcs-restricted',
+        encryptionScheme: 'cbcs-recommended',
       }],
       audioCapabilities: [{
         contentType: 'audio/mp4; codecs="mp4a.40.2"',
-        encryptionScheme: 'cbcs-restricted',
+        encryptionScheme: 'cbcs-recommended',
       }],
       initDataTypes: ['keyids'],
     },
@@ -136,9 +139,10 @@ function tryTwoEncryptionSchemesInOneConfiguration(keySystem) {
         contentType: 'video/mp4; codecs="avc1.640028"',
         encryptionScheme: 'cenc',
       },
-      { // A capability object which uses the "cbcs-restricted" encryption scheme
+      { // A capability object which uses the "cbcs-recommended" encryption
+        // scheme
         contentType: 'video/mp4; codecs="avc1.640028"',
-        encryptionScheme: 'cbcs-restricted',
+        encryptionScheme: 'cbcs-recommended',
       },
     ],
     audioCapabilities: [
@@ -146,9 +150,10 @@ function tryTwoEncryptionSchemesInOneConfiguration(keySystem) {
         contentType: 'audio/mp4; codecs="mp4a.40.2"',
         encryptionScheme: 'cenc',
       },
-      { // A capability object which uses the "cbcs-restricted" encryption scheme
+      { // A capability object which uses the "cbcs-recommended" encryption
+        // scheme
         contentType: 'audio/mp4; codecs="mp4a.40.2"',
-        encryptionScheme: 'cbcs-restricted',
+        encryptionScheme: 'cbcs-recommended',
       },
     ],
     initDataTypes: ['keyids'],
