@@ -72,6 +72,9 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
     of this feature in polyfills for user agents which do not support this
     field.  See also [[#polyfills]].
 
+    NOTE: The empty string is distinct from null or <a>not present</a>, and so
+    would be treated as an unrecognized encryption scheme.
+
     Well-known values for {{encryptionScheme}} are:
         - <dfn>cenc</dfn>: The "cenc" mode, defined in ISO 23001-7:2016, section
                            4.2a.  AES-CTR mode full sample and video NAL

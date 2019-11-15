@@ -38,6 +38,9 @@ partial dictionary MediaKeySystemMediaCapability {
 The encryption scheme used by the content.  A missing or `null` value indicates
 that any encryption scheme is acceptable.
 
+NOTE: The empty string is distinct from `null` or missing, and so would be
+treated as an unrecognized encryption scheme.
+
 Expected non-`null` values for encryptionScheme are:
  - *cenc*: The 'cenc' mode, defined in [ISO 23001-7:2016][], section 4.2a.
            AES-CTR mode full sample and video NAL subsample encryption.
