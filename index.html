@@ -1461,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Encrypted Media: Encryption Scheme Query</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-11-13">13 November 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-11-15">15 November 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1560,9 +1560,10 @@ authors to query support for specific encryption schemes in the CDM.</p>
      <li data-md>
       <p><dfn data-dfn-type="dfn" data-noexport id="cbcs">cbcs<a class="self-link" href="#cbcs"></a></dfn>: The "cbcs" mode, defined in ISO 23001-7:2016, section
                4.2d.  AES-CBC mode partial video NAL pattern
-               encryption.  Any encryption pattern is allowed for
-               video, while audio must be protected using
-               whole-block full-sample encryption for
+               encryption.  For video, this means that any
+               encryption pattern permitted by ISO 23001-7:2016,
+               section 4.2d is allowed.  For audio, this means that
+               whole-block full-sample encryption must be used for
                interoperability.</p>
      <li data-md>
       <p><dfn data-dfn-type="dfn" data-noexport id="cbcs-recommended">cbcs-recommended<a class="self-link" href="#cbcs-recommended"></a></dfn>: The same as "cbcs" mode, but with a
