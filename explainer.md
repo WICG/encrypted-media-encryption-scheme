@@ -42,9 +42,10 @@ Expected non-`null` values for encryptionScheme are:
  - *cenc*: The 'cenc' mode, defined in [ISO 23001-7:2016][], section 4.2a.
            AES-CTR mode full sample and video NAL subsample encryption.
  - *cbcs*: The 'cbcs' mode, defined in [ISO 23001-7:2016][], section 4.2d.
-           AES-CBC mode partial video NAL pattern encryption.  Any encryption
-           pattern is allowed for video, while audio must be protected using
-           whole-block full-sample encryption for interoperability.
+           AES-CBC mode partial video NAL pattern encryption.  For video, this
+           means that any encryption pattern permitted by ISO 23001-7:2016,
+           section 4.2d is allowed.  For audio, this means that whole-block
+           full-sample encryption must be used for interoperability.
  - *cbcs-recommended*: The same as 'cbcs' mode, but with a specific encrypt:skip
                        pattern of 1:9 for video, as recommended in ISO
                        23001-7:2016, section 10.4.2.
