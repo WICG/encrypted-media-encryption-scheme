@@ -81,11 +81,8 @@ spec: html51; urlPrefix: https://www.w3.org/TR/html51/
                            subsample encryption.
         - <dfn>cbcs</dfn>: The "cbcs" mode, defined in ISO 23001-7:2016, section
                            4.2d.  AES-CBC mode partial video NAL pattern
-                           encryption.  For video, this means that any
-                           encryption pattern permitted by ISO 23001-7:2016,
-                           section 4.2d is allowed.  For audio, this means that
-                           whole-block full-sample encryption must be used for
-                           interoperability.
+                           encryption.  For video, the spec allows various
+                           encryption patterns.
         - <dfn>cbcs-recommended</dfn>: The same as "cbcs" mode, but with a
                                        specific encrypt:skip pattern of 1:9 for
                                        video, as recommended in ISO
